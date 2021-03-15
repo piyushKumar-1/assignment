@@ -25,7 +25,7 @@ SECRET_KEY = '_97+-v1!%mts50^77g34%h^5(_f7e3&3g9#0-k+3dr!r6f3dc$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://nurturetest.herokuapp.com/']
 
 
 # Application definition
