@@ -4,3 +4,4 @@ djangorestframework-jwt
 djangorestframework-simplejwt
 dj_database_url
 psycopg2
+gunicorn
