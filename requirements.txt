@@ -3,3 +3,4 @@ django-rest-framework
 djangorestframework-jwt
 djangorestframework-simplejwt
 dj_database_url
+psycopg2
