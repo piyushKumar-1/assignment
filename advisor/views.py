@@ -4,6 +4,7 @@ from .serializers import AdvisorSerializer, BoookingSerializer, GetMyBookingsSer
 from .models import Advisor, Booking
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 class AdminAddAdvisor(generics.GenericAPIView):
@@ -19,6 +20,7 @@ class AdminAddAdvisor(generics.GenericAPIView):
 class GetAdvisors(generics.GenericAPIView):
     serializer_class = AdvisorSerializer
     queryset = Advisor.objects.all()
+    permission_classes = (IsAuthenticated, )
 
     def get(self, request, user_id):
         serializer = self.get_serializer(self.get_queryset(), many=True)
@@ -27,6 +29,7 @@ class GetAdvisors(generics.GenericAPIView):
 
 class BookAdvisors(generics.GenericAPIView):
     serializer_class = BoookingSerializer
+    permission_classes = (IsAuthenticated, )
 
     def post(self, request, user_id, advisor_id):
         data = {
@@ -43,7 +46,8 @@ class BookAdvisors(generics.GenericAPIView):
 class GetMyBookings(generics.GenericAPIView):
     serializer_class = GetMyBookingsSerializer
     queryset = Booking.objects.all()
-
+    permission_classes = (IsAuthenticated, )
+    
     def get(self, request, user_id):
         queryset = Booking.objects.filter(user_id=user_id)
         serializer = self.get_serializer(queryset, many=True)

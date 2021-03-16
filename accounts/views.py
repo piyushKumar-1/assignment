@@ -16,11 +16,10 @@ class LoginAPI(generics.GenericAPIView):
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data
     refresh = RefreshToken.for_user(user)
-    token = str(refresh)
     return Response({
         'user_id':user.id,
-        'JWT access token':token,
-        'JWT refresh token':token
+        'JWT access token':str(refresh.access_token),
+        'JWT refresh token':str(refresh)
         },
     status=status.HTTP_200_OK
     )
@@ -36,10 +35,11 @@ class CreateUserAPIView(generics.GenericAPIView):
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
         token = str(refresh)
+        access_token =str(refresh.access_token)
         return Response({
             'user_id':user.id,
-            'JWT access token':token,
-            'JWT refresh token':token
+            'JWT access token':str(refresh.access_token),
+            'JWT refresh token':str(refresh)
             },
         status=status.HTTP_200_OK
         )
